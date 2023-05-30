@@ -16,6 +16,7 @@ gem 'devise'
 
 # html/css
 gem 'bootstrap', '~> 5.2', '>= 5.2.3'
+gem 'jquery-rails'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
