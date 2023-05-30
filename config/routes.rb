@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   devise_for :doctors
   devise_for :users
 
-  resourses :categories
-  resourses :appointment do
-    resourses :recommandation
+  resources :categories
+  resources :appointment do
+    resources :recommandation
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

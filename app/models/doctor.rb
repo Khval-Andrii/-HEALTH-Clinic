@@ -6,5 +6,5 @@ class Doctor < ApplicationRecord
 
   belongs_to :category
   has_many :appointment, dependent: :destroy
-  has_many :users, throught: :appointment
+  has_many :users, through: :appointment
 end

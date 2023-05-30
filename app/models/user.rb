@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :appointment, dependent: :destroy
-  has_many :doctors, throught: :appointment
+  has_many :doctors, through: :appointment
 end
