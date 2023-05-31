@@ -10,12 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_30_092814) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_31_151425) do
   create_table "appointments", force: :cascade do |t|
     t.text "description"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.integer "doctor_id", null: false
+    t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
+    t.index ["user_id"], name: "index_appointments_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -33,6 +37,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_092814) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "category_id", null: false
+    t.index ["category_id"], name: "index_doctors_on_category_id"
     t.index ["email"], name: "index_doctors_on_email", unique: true
     t.index ["reset_password_token"], name: "index_doctors_on_reset_password_token", unique: true
   end
@@ -41,6 +47,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_092814) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "appointment_id", null: false
+    t.index ["appointment_id"], name: "index_recommandations_on_appointment_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -55,4 +63,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_092814) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "appointments", "doctors"
+  add_foreign_key "appointments", "users"
+  add_foreign_key "doctors", "categories"
+  add_foreign_key "recommandations", "appointments"
 end
