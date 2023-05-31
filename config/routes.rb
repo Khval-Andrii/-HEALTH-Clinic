@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  root 'main#index'
   get 'main/index'
   devise_for :doctors
   devise_for :users
@@ -9,7 +10,4 @@ Rails.application.routes.draw do
   resources :appointment do
     resources :recommandation
   end
-
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  root 'main#index'
 end
