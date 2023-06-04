@@ -24,11 +24,11 @@ Rails.application.routes.draw do
   # get 'appointments/destroy'
   root 'main#index'
   get 'main/index'
-  devise_for :doctors
-  devise_for :users
+  devise_for :doctors, controllers: { registrations: 'doctors/registrations' }
+  devise_for :users, controllers: { registrations: 'users/registrations' }
 
   resources :categories
-  resources :appointment do
-    resources :recommandation
+  resources :appointments do
+    resources :recommandations
   end
 end
