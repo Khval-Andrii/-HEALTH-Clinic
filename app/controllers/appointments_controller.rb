@@ -1,5 +1,6 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: %i[show edit update destroy]
+  before_action :authenticate_user!
   def index
     @appointment_to_doctor = Appointment.where('doctor_id = ?', params[:doctor_id])
     @appointment_of_user = Appointment.where('user_id = ?', params[:user_id])
@@ -8,6 +9,7 @@ class AppointmentsController < ApplicationController
   def show; end
 
   def new
+    @doctor = Doctor.find_by(id: params[:doctor_id])
     @appointment = Appointment.new
   end
 
@@ -17,7 +19,7 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.new(appointment_params)
 
     if @appointment.save
-      redirect_to @appointment
+      redirect_to categories_path, notice: "Запис успішно створено!"
     else
       render :new, status: :unprocessable_entity
     end

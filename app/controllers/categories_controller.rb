@@ -3,6 +3,7 @@ class CategoriesController < ApplicationController
 
   def index
     @categories_all = Category.all
+    @doctors = Doctor.all
   end
 
   def show; end

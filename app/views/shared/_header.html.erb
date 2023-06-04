@@ -17,10 +17,10 @@
       <% if user_signed_in? || doctor_signed_in? %>
         <%= button_to "Logout", destroy_user_session_path || destroy_doctor_session_path , method: :delete, data: { turbo: false }, class: "btn btn-outline-primary" %>
       <% else %>
-        <%= link_to new_user_registration_path do %>
+        <%= link_to new_user_session_path do %>
           <button type="button" class="btn btn-outline-primary me-2">Я-Пацієнт</button>
         <% end %>
-        <%= link_to new_doctor_registration_path do %>
+        <%= link_to new_doctor_session_path do %>
           <button type="button" class="btn btn-outline-primary me-2">Я-Лікар</button>
         <% end %>
       <% end %>

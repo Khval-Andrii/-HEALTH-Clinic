@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :phone, uniqueness: true
+  validates :name, presence: true
+  
 
   has_many :appointment, dependent: :destroy
   has_many :doctors, through: :appointment
