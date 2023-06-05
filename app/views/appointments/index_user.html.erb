@@ -1,0 +1,13 @@
+<%# <h1>Список записів на прийом</h1> %>
+
+  <% if @has_appointment %>
+    <% @appointments.each do |appointment| %>
+      <h3><%= appointment.user_name %></h3>
+      <h3><%= appointment.description %></h3>
+    <%= link_to 'Надати рекомендацію', new_appointment_recommandation_path(appointment) %>
+    <% end %>
+  <% else %>
+    <p>Немає поточних записів на прийом!</p>
+  <% end %>
+
+
