@@ -33,6 +33,6 @@ class RecommandationsController < ApplicationController
     end
 
     def recommandation_params
-      params.require(:recommandation).permit(:description)
+      params.require(:recommandation).permit(:appointment_id, :description)
     end
 end

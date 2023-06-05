@@ -1,9 +1,18 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: %i[show edit update destroy]
-  before_action :authenticate_user!
-  def index
-    @appointment_to_doctor = Appointment.where('doctor_id = ?', params[:doctor_id])
-    @appointment_of_user = Appointment.where('user_id = ?', params[:user_id])
+  before_action :authenticate_user!, only: %i[new create]
+  skip_before_action :authenticate_user!, only: %i[new create], if: :user_signed_in?
+  #before_action :authenticate_doctor!, only: %i[index_doctor]
+
+  def index_doctor
+    @has_appointment = Appointment.exists?(doctor_id: current_doctor.id)
+    @appointments = current_doctor.appointments
+    #@appointments_to_doctor = Appointment.where('doctor_id = ?', current_doctor.id).to_a
+    #@appointment_of_user = Appointment.where('user_id = ?', current_user.id)
+  end
+
+  def index_user
+    @appointments = current_user.appointments
   end
 
   def show; end
