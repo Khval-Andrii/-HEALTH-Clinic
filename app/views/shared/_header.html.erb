@@ -15,7 +15,12 @@
 
     <div class="col-md-3 text-end">
       <% if user_signed_in? || doctor_signed_in? %>
-        <%= button_to "Logout", destroy_user_session_path || destroy_doctor_session_path , method: :delete, data: { turbo: false }, class: "btn btn-outline-primary" %>
+        <%= button_to "Редагувати", user_signed_in? ?
+                        edit_user_registration_path :
+                        edit_doctor_registration_path, method: :get, class: "btn btn-outline-primary" %>
+        <%= button_to "Вихід", user_signed_in? ?
+                        destroy_user_session_path :
+                        destroy_doctor_session_path, method: :delete, data: { turbo: false }, class: "btn btn-outline-primary" %>
       <% else %>
         <%= link_to new_user_session_path do %>
           <button type="button" class="btn btn-outline-primary me-2">Я-Пацієнт</button>
