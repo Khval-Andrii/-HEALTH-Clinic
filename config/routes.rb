@@ -29,6 +29,10 @@ Rails.application.routes.draw do
 
   resources :categories
   resources :appointments do
+    collection do
+      get :index_doctor
+      get :index_user
+    end
     resources :recommandations
   end
 end
