@@ -9,8 +9,8 @@ class Doctor < ApplicationRecord
   validates :name, presence: true
 
   belongs_to :category
-  has_many :appointment, dependent: :destroy
-  has_many :users, through: :appointment
+  has_many :appointments, dependent: :destroy
+  has_many :users, through: :appointments
 
   def email_required?
     false
