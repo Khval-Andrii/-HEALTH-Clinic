@@ -6,7 +6,7 @@ class Doctor < ApplicationRecord
 
   validates :phone, uniqueness: true
   validates :category_id, presence: true
-  validates :name, presence: true
+  validates :name, presence: true, length: { minimum: 2 }
 
   belongs_to :category
   has_many :appointments, dependent: :destroy

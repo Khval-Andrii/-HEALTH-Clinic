@@ -5,6 +5,6 @@ class Appointment < ApplicationRecord
 
   VALID_STATUSES = %w[open closed]
 
-  validates :description, presence: true
+  validates :description, presence: true, length: { minimum: 10 }
   validates :status, inclusion: { in: VALID_STATUSES }
 end
