@@ -1,5 +1,6 @@
 <h1>Створення запису на прийом</h1>
-<h2>лікар: <%= @doctor.name %></h2>
+<h2>Лікар:</h2>
+<p><%= @doctor.name %></p>
 <%= form_with(model: @appointment) do |form| %>
   <% if @appointment.errors.any? %>
     <div style="color: red">

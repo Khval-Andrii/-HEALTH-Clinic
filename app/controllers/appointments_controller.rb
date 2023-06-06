@@ -1,7 +1,7 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: %i[show edit update destroy]
   before_action :authenticate_user!, only: %i[new create]
-  skip_before_action :authenticate_user!, only: %i[new create], if: :user_signed_in?
+  #skip_before_action :authenticate_user!, only: %i[new create], if: :user_signed_in?
   #before_action :authenticate_doctor!, only: %i[index_doctor]
 
   def index_doctor
