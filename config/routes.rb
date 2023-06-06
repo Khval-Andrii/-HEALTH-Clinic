@@ -33,6 +33,6 @@ Rails.application.routes.draw do
       get :index_doctor
       get :index_user
     end
-    resources :recommandations
+    resources :recommandations, only: [:new, :create]
   end
 end

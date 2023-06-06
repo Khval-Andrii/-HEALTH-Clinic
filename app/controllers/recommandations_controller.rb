@@ -1,35 +1,34 @@
 class RecommandationsController < ApplicationController
-  before_action :set_appointment_recommandation
-  # def index
-  # end
+  before_action :set_appointment_recommandation, only: %i[new create]
 
-  # def show
-  # end
-
-  # def new
-  # end
-
-  # def edit
-  # end
-
-  def create
-    @recommandation = @appointment.recommandations.create(recommandation_params)
-
-    redirect_to root_path
+  def new
+    if @appointment.recommandation.present?
+      redirect_to index_doctor_appointments_path, notice: 'Ця Рекомендація вже надавалася!'
+    else
+      @recommandation = @appointment.build_recommandation
+    end
   end
 
-  # def update
-  # end
+  def create
+    @recommandation = @appointment.build_recommandation(recommandation_params)
+
+    if @recommandation.save
+      @appointment.update(status: 'closed')
+      redirect_to  index_doctor_appointments_path, notice: 'Рекомендація успішно надіслана!'
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
 
   def destroy
-    @recommandation = @appointment.recommandations(params[:id])
+    @recommandation = @appointment.recommandation(params[:id])
     @recommandation.destroy
   end
 
   private
 
     def set_appointment_recommandation
-      @appointment = Appointment.find(params[:appointment_id])
+      @appointment = Appointment.find_by(id: params[:appointment_id])
     end
 
     def recommandation_params

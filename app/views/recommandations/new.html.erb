@@ -1,2 +1,19 @@
-<h1>Recommandations#new</h1>
-<p>Find me in app/views/recommandations/new.html.erb</p>
+<h1>Рекомендація</h1>
+
+<h4>Пацієнт:</h4>
+<p><%= @appointment.user.name %></p>
+<h4>Опис проблеми:</h4>
+<p><%= @appointment.description %></p>
+ 
+<%= form_with model: [@appointment, @recommandation] do |form| %>
+
+  <div class="field">
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div>
+    <%= form.submit 'Надіслати' %>
+  </div>
+
+<% end %>
