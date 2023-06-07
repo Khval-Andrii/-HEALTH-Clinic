@@ -136,13 +136,9 @@
         </div>
         <h3 class="fs-2 text-body-emphasis">Рекомендації від лікаря</h3>
         <p>Дізнайтеся про цінні рекомендації та поради від наших лікарів. Отримайте професійні поради щодо популярних медичних питань та профілактики захворювань. Довіртеся досвіду та експертизі наших лікарів, щоб зберегти своє здоров'я та піклуватися про нього.</p>
-        <%# link_to  do %>
+        <%= link_to index_user_appointments_path do %>
           <button type="button" class="btn btn-outline-primary me-2">Переглянути</button>
-        <%# end %> 
-        <%# <a href="#" class="icon-link">
-          Call to action
-          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
-        </a> %>
+        <% end %>
       </div>
       <div class="feature col">
         <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
@@ -163,7 +159,7 @@
           <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"/></svg>
         </div>
         <h3 class="fs-2 text-body-emphasis">Список записів на прийом</h3>
-        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+        <p>Перегляд списку всіх пацієнтів, які записалися на прийом, відображення їх імен, контактної інформації та деталей запису.</p>
         <%= link_to index_doctor_appointments_path do %>
           <button type="button" class="btn btn-outline-primary me-2">Переглянути</button>
         <% end %>
