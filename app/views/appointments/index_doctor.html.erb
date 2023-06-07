@@ -1,15 +1,25 @@
 <h1>Список записів на прийом:</h1>
-
-  <% if @has_appointment %>
-    <% @appointments.each do |appointment| %>
-      <h4>Пацієнт:</h4>
-      <p><%= appointment.user.name %></p>
-      <h4>Опис проблеми:</h4>
-      <p><%= appointment.description %></p>
-    <%= link_to 'Надати рекомендацію', new_appointment_recommandation_path(appointment) %>
-    <% end %>
-  <% else %>
-    <p>Немає поточних записів на прийом!</p>
-  <% end %>
-
-
+<% if @has_appointment %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Пацієнт</th>
+        <th>Опис проблеми</th>
+        <th>Рішення</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @appointments.each do |appointment| %>
+        <% unless appointment.recommandation.present? %>
+          <tr>
+            <td><p><%= appointment.user.name %></p></td>
+            <td><p><%= appointment.description %></p></td>
+            <td><%= link_to 'Надати рекомендацію', new_appointment_recommandation_path(appointment) %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Немає поточних записів на прийом!</p>
+<% end %>
