@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_01_154338) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_04_110926) do
   create_table "appointments", force: :cascade do |t|
     t.text "description"
     t.string "status", default: "open"
@@ -37,6 +37,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_154338) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "phone"
+    t.string "name"
+    t.integer "category_id", null: false
+    t.index ["category_id"], name: "index_doctors_on_category_id"
     t.index ["reset_password_token"], name: "index_doctors_on_reset_password_token", unique: true
   end
 
@@ -56,10 +59,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_154338) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "phone"
+    t.string "name"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "appointments", "doctors"
   add_foreign_key "appointments", "users"
+  add_foreign_key "doctors", "categories"
   add_foreign_key "recommandations", "appointments"
 end

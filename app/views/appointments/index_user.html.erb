@@ -1,0 +1,29 @@
+<h1>Список рекомендацій від лікарів:</h1>
+
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Лікар</th>
+        <th>Спеціальність</th>
+        <th>Скарга</th>
+        <th>Рекомендація лікаря</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @appointments.each do |appointment| %>
+      <tr>
+        <td><%= appointment.doctor.name %></td>
+        <td><%= appointment.doctor.category.name %></td>
+        <td><%= appointment.description %></td>
+        <td>
+          <% if appointment.recommandation.present? %>
+            <p class="text-success"><%= appointment.recommandation.description %></p>
+          <% else %>
+            <p class="text-info">Лікар поки що не надав рекомендацію!</p>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>

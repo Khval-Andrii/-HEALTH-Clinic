@@ -7,21 +7,40 @@
     </div>
 
     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-      <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
-      <li><a href="#" class="nav-link px-2">Pricing</a></li>
-      <li><a href="#" class="nav-link px-2">FAQs</a></li>
-      <li><a href="#" class="nav-link px-2">About</a></li>
+      <li><%= link_to "Головна", root_path, class: "nav-link px-2 link-secondary" %></li>
+      <li><a href="#" class="nav-link px-2">Ціни</a></li>
+      <li><a href="#" class="nav-link px-2">Запитання</a></li>
+      <li><a href="#" class="nav-link px-2">Про клініку</a></li>
     </ul>
 
     <div class="col-md-3 text-end">
       <% if user_signed_in? || doctor_signed_in? %>
-        <%= button_to "Logout", destroy_user_session_path || destroy_doctor_session_path , method: :delete, data: { turbo: false }, class: "btn btn-outline-primary" %>
+        <div class="dropdown text-end">
+          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+          </a>
+          <ul class="dropdown-menu text-small">
+            <li><%= link_to "Редагувати", user_signed_in? ?
+                        edit_user_registration_path :
+                        edit_doctor_registration_path, method: :get, class: "dropdown-item" %></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><%= button_to "Вихід", user_signed_in? ?
+                        destroy_user_session_path :
+                        destroy_doctor_session_path, method: :delete, data: { turbo: false }, class: "dropdown-item" %></li>
+          </ul>
+        </div>
+        <%# <%= button_to "Редагувати", user_signed_in? ?
+                        edit_user_registration_path :
+                        edit_doctor_registration_path, method: :get, class: "btn btn-outline-primary" %>
+        <%# <%= button_to "Вихід", user_signed_in? ?
+                        destroy_user_session_path :
+                        destroy_doctor_session_path, method: :delete, data: { turbo: false }, class: "btn btn-outline-primary" %>
       <% else %>
         <%= link_to new_user_session_path do %>
-          <button type="button" class="btn btn-outline-primary me-2">Login</button>
+          <button type="button" class="btn btn-outline-primary me-2">Я-Пацієнт</button>
         <% end %>
-        <%= link_to new_user_registration_path do %>
-          <button type="button" class="btn btn-primary">Sign-up</button>
+        <%= link_to new_doctor_session_path do %>
+          <button type="button" class="btn btn-outline-success me-2">Я-Лікар</button>
         <% end %>
       <% end %>
     </div>
