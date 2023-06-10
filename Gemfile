@@ -13,6 +13,9 @@ gem 'jbuilder'
 # auth
 gem 'devise'
 
+#feature
+gem 'image_processing'
+gem "aws-sdk-s3", require: false
 
 # html/css
 gem 'bootstrap', '~> 5.2', '>= 5.2.3'
