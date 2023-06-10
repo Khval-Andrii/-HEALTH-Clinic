@@ -14,6 +14,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :avatar %><br />
+    <%= f.file_field :avatar, autofocus: true %>
+  </div>
+
+  <div class="field">
     <%= f.label :category %><br />
     <% categories = Category.pluck(:name, :id).sort %>
     <%= f.select(:category_id, categories, autofocus: true) %>
