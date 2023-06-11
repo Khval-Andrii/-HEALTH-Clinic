@@ -1,16 +1,17 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: %i[show edit update destroy]
   before_action :authenticate_user!, only: %i[new create index_user]
-  #skip_before_action :authenticate_user!, only: %i[new create], if: :user_signed_in?
   before_action :authenticate_doctor!, only: %i[index_doctor]
 
   def index_doctor
     @has_appointment = Appointment.exists?(doctor_id: current_doctor.id)
     @appointments = current_doctor.appointments
+    authorize! :read, Appointment
   end
 
   def index_user
     @appointments = current_user.appointments
+    authorize! :read, Recommandation
   end
 
   def show; end
@@ -32,11 +33,9 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  def update
-  end
+  def update; end
 
-  def destroy
-  end
+  def destroy; end
 
   private
 

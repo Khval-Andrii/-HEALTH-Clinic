@@ -20,7 +20,7 @@
           <% if appointment.recommandation.present? %>
             <p class="text-success"><%= appointment.recommandation.description %></p>
           <% else %>
-            <p class="text-info">Лікар поки що не надав рекомендацію!</p>
+            <p class="text-danger">Лікар поки що не надав рекомендацію!</p>
           <% end %>
         </td>
       </tr>

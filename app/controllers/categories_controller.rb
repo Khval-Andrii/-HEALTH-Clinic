@@ -4,6 +4,7 @@ class CategoriesController < ApplicationController
   def index
     @categories_all = Category.all
     @doctors = Doctor.all
+    authorize! :read, Doctor
   end
 
   def show; end
