@@ -15,24 +15,10 @@
 
     <div class="col-md-3 text-end">
       <% if user_signed_in? || doctor_signed_in? %>
-        <div class="dropdown text-end">
-          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-          </a>
-          <ul class="dropdown-menu text-small">
-            <li><%= link_to "Редагувати", user_signed_in? ?
-                        edit_user_registration_path :
-                        edit_doctor_registration_path, method: :get, class: "dropdown-item" %></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><%= button_to "Вихід", user_signed_in? ?
-                        destroy_user_session_path :
-                        destroy_doctor_session_path, method: :delete, data: { turbo: false }, class: "dropdown-item" %></li>
-          </ul>
-        </div>
-        <%# <%= button_to "Редагувати", user_signed_in? ?
+        <%= button_to "Редагувати", user_signed_in? ?
                         edit_user_registration_path :
                         edit_doctor_registration_path, method: :get, class: "btn btn-outline-primary" %>
-        <%# <%= button_to "Вихід", user_signed_in? ?
+        <%= button_to "Вихід", user_signed_in? ?
                         destroy_user_session_path :
                         destroy_doctor_session_path, method: :delete, data: { turbo: false }, class: "btn btn-outline-primary" %>
       <% else %>
