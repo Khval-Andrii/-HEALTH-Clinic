@@ -4,9 +4,9 @@ class Doctor < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :phone, uniqueness: true
+  validates :phone, format: { with: /\A\+380\d{2}\d{3}\d{2}\d{2}\z/, message: "only allows phone number" }
   validates :category_id, presence: true
-  validates :avatar, presence: true
+  #validates :avatar, presence: true
   validates :name, presence: true, length: { minimum: 2 }
 
   belongs_to :category
