@@ -17,6 +17,8 @@ class AppointmentsController < ApplicationController
   def show; end
 
   def new
+    @max_appointment = 10
+    @count_appointments = Appointment.where(doctor_id: params[:doctor_id], status: 'open').count
     @doctor = Doctor.find_by(id: params[:doctor_id])
     @appointment = Appointment.new
   end

@@ -1,28 +1,39 @@
 <h1>Створення запису на прийом</h1>
-<h2>Лікар:</h2>
-<p><%= @doctor.name %></p>
-<%= form_with(model: @appointment) do |form| %>
-  <% if @appointment.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(@appointment.errors.count, 'error') %> prohibited this appointment from being saved:</h2>
+<p>Лікар:</p>
+<h4><%= @doctor.name %></h4>
+<p>Спеціалізація:</p>
+<h4><%= @doctor.category.name %></h4>
+<% if @count_appointments < @max_appointment %>
+  <%= form_with(model: @appointment) do |form| %>
+    <% if @appointment.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(@appointment.errors.count, 'error') %> prohibited this appointment from being saved:</h2>
 
-      <ul>
-        <% appointment.errors.each do |error| %>
-        <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% appointment.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= form.hidden_field :doctor_id, value: @doctor.id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+
+    <div class="field">
+      <%= form.label :description, style: "display: block" %>
+      <%= form.text_field :description %>
+    </div>
+
+    <div>
+      <%= form.submit 'Записатися' %>
     </div>
   <% end %>
-  <%= form.hidden_field :doctor_id, value: @doctor.id %>
-  <%= form.hidden_field :user_id, value: current_user.id %>
-
-  <div class="field">
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
-  </div>
-
-  <div>
-    <%= form.submit 'Записатися' %>
-  </div>
-
+  <%= link_to categories_path do %>
+    <button type="button" class="btn btn-outline-primary me-2">Повернутися</button>
+  <% end %>
+<% else %>
+  <p class="text-danger">У лікаря забагато відкритих записів, зверніться до іншого спеціаліста!</p>
+  <%= link_to categories_path do %>
+    <button type="button" class="btn btn-outline-primary me-2">Повернутися</button>
+  <% end %>
 <% end %>
