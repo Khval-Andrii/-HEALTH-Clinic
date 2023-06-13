@@ -2,27 +2,28 @@ require 'rails_helper'
 
 RSpec.describe Doctor, type: :model do
 
-  def create_doctor(name, phone, category_id)
-    doctor = Doctor.new(name: name, phone: phone, category_id: category_id)
-    doctor
-  end
+  describe 'phone' do
+    context 'when phone number valid' do
+      it 'should be valid' do
+        doctor = FactoryBot.create(:doctor, phone: '+380671234567')
+        expect(doctor).to be_valid
+      end
+    end
 
-  before(:each) do
-    @regexp = /\A\+380\d{2}\d{3}\d{2}\d{2}\z/
-  end
+    context 'when phone number not valid' do
+      it 'should be not valid' do
+        doctor = FactoryBot.build(:doctor, phone: '+190671234567')
+        expect(doctor).not_to be_valid
+        expect(doctor.errors[:phone]).to include('only allows phone number')
+      end
+    end
 
-  it 'should to check valid phone number?' do
-    doctor = create_doctor('Name', '+380671234567', 5)
-    expect(doctor.phone).to match(@regexp)
-  end
-
-  it 'should to check not valid phone number?' do
-    doctor = create_doctor('Name', '+280671234567', 5)
-    expect(doctor.phone).not_to match(@regexp)
-  end
-
-  it 'should to check not valid phone number?' do
-    doctor = create_doctor('Name', '+38067123456', 5)
-    expect(doctor.phone).not_to match(@regexp)
+    context 'when phone number not valid' do
+      it 'should be too short number' do
+        doctor = FactoryBot.build(:doctor, phone: '+3806712')
+        expect(doctor).not_to be_valid
+        expect(doctor.errors[:phone]).to include('only allows phone number')
+      end
+    end
   end
 end
