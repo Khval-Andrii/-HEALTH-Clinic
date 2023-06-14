@@ -128,7 +128,11 @@
   </svg>
 
   <div class="container px-4 py-5" id="featured-3">
-    <h2 class="pb-2 border-bottom">Columns with icons</h2>
+    <% if user_signed_in? || doctor_signed_in? %>
+      <h2 class="pb-2 border-bottom">Вітаємо <%= user_signed_in? ? current_user.name : current_doctor.name %></h2>
+    <% else %>
+      <h2 class="pb-2 border-bottom">Авторизуйтеся щоб переглянути</h2>
+    <% end %>
     <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
       <div class="feature col">
         <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
