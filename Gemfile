@@ -12,6 +12,7 @@ gem 'jbuilder'
 
 # auth
 gem 'devise'
+gem 'activeadmin'
 
 #feature
 gem 'image_processing'

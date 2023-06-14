@@ -18,6 +18,8 @@ categories = {
     'Урологія' => 'Діагностика та лікування захворювань сечостатевої системи.'
   }
 
-categories.each do |k, v| 
+categories.each do |k, v|
   Category.create(name: k, description: v)
 end
+
+AdminUser.create!(email: 'admin1@example.com', password: 'password', password_confirmation: 'password', phone: '+380671234567') if Rails.env.development?
