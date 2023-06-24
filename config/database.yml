@@ -20,3 +20,4 @@ production:
   port: 5432
   username: postgres
   password: <%= ENV['FLY_DB_HEALTHCLINIC'] %>
+  flycast: fdaa:2:54cf:0:1::3

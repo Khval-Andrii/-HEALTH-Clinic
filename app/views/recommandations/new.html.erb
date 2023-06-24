@@ -1,19 +1,31 @@
-<h1>Рекомендація</h1>
+<div class='container'>
+  <h1 class='text-center'>Рекомендація</h1>
 
-<h4>Пацієнт:</h4>
-<p><%= @appointment.user.name %></p>
-<h4>Опис проблеми:</h4>
-<p><%= @appointment.description %></p>
- 
-<%= form_with model: [@appointment, @recommandation] do |form| %>
-
-  <div class="field">
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
-  </div>
-
-  <div>
-    <%= form.submit 'Надіслати' %>
-  </div>
-
-<% end %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Пацієнт</th>
+        <th>Опис проблеми</th>
+        <th>Рекомендація</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><p><%= @appointment.user.name %></p></td>
+        <td><p><%= @appointment.description %></p></td>
+      <%= form_with model: [@appointment, @recommandation] do |form| %>
+        <td>
+          <div class="field">
+            <%= form.text_field :description %>
+          </div>
+        </td>
+        <td>
+          <div class='me-2'>
+            <%= form.submit 'Надіслати' %>
+          </div>
+        </td>
+      <% end %>
+      </tr>
+    </tbody>
+  </table>
+</div>
