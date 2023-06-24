@@ -1,11 +1,13 @@
-<h1>Список лікарів по категоріям</h1>
+<div class="container">
+  <h1 class='text-center'>Список лікарів по категоріям</h1>
 
-<% @categories_all.each do |category| %>
-  <h2><%= category.name %></h2>
-  <% category.doctors.each do |doctor| %>
-    <%= image_tag doctor.avatar if doctor.avatar.present? %>
-    <p>Name: <%= doctor.name %></p>
-    <p>Phone number: <%= doctor.phone %></p>
-    <%= link_to 'Записатися на прийом', new_appointment_path(doctor_id: doctor.id) %>
+  <% @categories_all.each do |category| %>
+    <h2><%= category.name %></h2>
+    <% category.doctors.each do |doctor| %>
+      <%= image_tag doctor.avatar if doctor.avatar.present? %>
+      <p>Name: <%= doctor.name %></p>
+      <p>Phone number: <%= doctor.phone %></p>
+      <%= link_to 'Записатися на прийом', new_appointment_path(doctor_id: doctor.id) %>
+    <% end %>
   <% end %>
-<% end %>
+</div>
